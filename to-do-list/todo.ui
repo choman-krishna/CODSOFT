@@ -218,7 +218,6 @@
      <string>File</string>
     </property>
     <addaction name="new_menu"/>
-    <addaction name="save_menu"/>
    </widget>
    <addaction name="menuNew"/>
   </widget>
