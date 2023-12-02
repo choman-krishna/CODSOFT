@@ -40,7 +40,6 @@ class MyGUI(QMainWindow):
         text = QStandardItem(self.input_field.text())
         self.model.appendRow(text)
         self.tasks += 1
-        self.lcd_tasks.display(self.tasks)
 
         # Enable Completed and Reset
         if self.tasks != 0:
@@ -49,6 +48,9 @@ class MyGUI(QMainWindow):
 
         # Clear the text field
         self.input_field.setText("")
+
+        # update LCD
+        self.lcd_update()
 
     # Mark complete
     def mark_completed(self):
@@ -70,7 +72,8 @@ class MyGUI(QMainWindow):
                 self.completed_count -= 1
                 self.tasks += 1
 
-            self.lcd_uncompleted.display(self.completed_count)
+            # update LCD
+            self.lcd_update()
 
 
         else:
@@ -81,6 +84,11 @@ class MyGUI(QMainWindow):
 
     def reset_all(self):
         pass
+
+    # Update LCD function
+    def lcd_update(self):
+        self.lcd_uncompleted.display(self.completed_count)
+        self.lcd_tasks.display(self.tasks)
 
 
 
