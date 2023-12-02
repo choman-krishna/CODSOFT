@@ -112,7 +112,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Exit</string>
+     <string>Delete</string>
     </property>
    </widget>
    <widget class="QLabel" name="un_count">
@@ -185,6 +185,22 @@
       <width>331</width>
       <height>441</height>
      </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="edit">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>360</x>
+      <y>340</y>
+      <width>93</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Edit</string>
     </property>
    </widget>
   </widget>
