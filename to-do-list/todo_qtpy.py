@@ -1,11 +1,12 @@
 from PyQt5.QtWidgets import *
-from PyQt5.QtGui import QStandardItem, QStandardItemModel
+from PyQt5.QtGui import QStandardItem, QStandardItemModel, QTextCharFormat
 from PyQt5 import uic
 
 class MyGUI(QMainWindow):
 
     # variables 
     tasks = 0
+    completed_count = 0
 
     def __init__(self):
         super(MyGUI, self).__init__()
@@ -24,7 +25,9 @@ class MyGUI(QMainWindow):
         # Set text_view to model 
         self.listView.setModel(self.model)
 
-    
+        
+
+    # Add to list 
     def insert(self):
         
         # add the task
@@ -40,8 +43,28 @@ class MyGUI(QMainWindow):
         # Clear the text field
         self.input_field.setText("")
 
+    # Mark complete
     def mark_completed(self):
-        pass
+
+        if len(self.listView.selectedIndexes()) != 0:
+
+            selected_index = self.listView.selectedIndexes()[0]
+            sel_item = self.model.itemFromIndex(selected_index)
+
+            change_font = QTextCharFormat()
+            change_font.setFontStrikeOut(not sel_item.font().strikeOut())
+
+            sel_item.setFont(change_font.font())
+            
+            if sel_item.font().strikeOut():
+                self.completed_count += 1
+
+        else:
+            caution_box = QMessageBox()
+            caution_box.setWindowTitle("CAUTION")
+            caution_box.setText("No Task Selected")
+            caution_box.exec_()
+
     def reset_all(self):
         pass
 
@@ -50,6 +73,7 @@ class MyGUI(QMainWindow):
 def main():
     app = QApplication([])
     window = MyGUI()
+    
     app.exec_()
 
 if __name__ == "__main__":
