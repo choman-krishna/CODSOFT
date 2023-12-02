@@ -25,6 +25,11 @@ class MyGUI(QMainWindow):
         # Set text_view to model 
         self.listView.setModel(self.model)
 
+        # LCD
+        # object for lcd
+        self.lcd = self.findChild(QLCDNumber, "task_count_display_2")
+        
+
         
 
     # Add to list 
@@ -34,11 +39,13 @@ class MyGUI(QMainWindow):
         text = QStandardItem(self.input_field.text())
         self.model.appendRow(text)
         self.tasks += 1
-
+        self.lcd.display(self.tasks)
         # Enable Completed and Reset
         if self.tasks != 0:
             self.completed.setEnabled(True)
             self.restart.setEnabled(True)
+
+            
 
         # Clear the text field
         self.input_field.setText("")
