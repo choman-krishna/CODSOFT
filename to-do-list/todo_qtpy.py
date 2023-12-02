@@ -26,6 +26,9 @@ class MyGUI(QMainWindow):
         self.edit.clicked.connect(self.edit_content)
         self.delete_2.clicked.connect(exit)
 
+        # Menu
+        self.new_menu.triggered.connect(self.reset_all)
+
         # LCD
         # object for lcd
         self.lcd_tasks = self.findChild(QLCDNumber, "task_count_display_2")
@@ -100,6 +103,7 @@ class MyGUI(QMainWindow):
             text, ok = QInputDialog.getText(self, "Edit", "Edit Task", QLineEdit.Normal, sel_item.text())
             if text and ok is not None:
                 sel_item.setText(text)
+
 
 
     # Update LCD function
