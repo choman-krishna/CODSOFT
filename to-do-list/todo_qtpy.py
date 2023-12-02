@@ -13,17 +13,17 @@ class MyGUI(QMainWindow):
         uic.loadUi('todo.ui', self)
         self.show()
 
-        # Push-Button
-        self.add.clicked.connect(self.insert)
-        self.completed.clicked.connect(self.mark_completed)
-        self.restart.clicked.connect(self.reset_all)
-        self.delete_2.clicked.connect(exit)
-
         # Text view-list Model
         # object for model
         self.model = QStandardItemModel()
         # Set text_view to model 
         self.listView.setModel(self.model)
+        
+        # Push-Button
+        self.add.clicked.connect(self.insert)
+        self.completed.clicked.connect(self.mark_completed)
+        self.restart.clicked.connect(self.reset_all)
+        self.delete_2.clicked.connect(exit)
 
         # LCD
         # object for lcd
@@ -83,7 +83,10 @@ class MyGUI(QMainWindow):
             caution_box.exec_()
 
     def reset_all(self):
-        pass
+        self.model.clear()
+        self.completed_count, self.tasks = 0 , 0
+        self.lcd_update()
+        
 
     # Update LCD function
     def lcd_update(self):

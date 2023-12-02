@@ -112,7 +112,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Delete</string>
+     <string>Exit</string>
     </property>
    </widget>
    <widget class="QLabel" name="un_count">
@@ -202,7 +202,6 @@
      <string>File</string>
     </property>
     <addaction name="new_menu"/>
-    <addaction name="open_menu"/>
     <addaction name="save_menu"/>
    </widget>
    <addaction name="menuNew"/>
