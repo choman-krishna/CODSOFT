@@ -23,6 +23,7 @@ class MyGUI(QMainWindow):
         self.add.clicked.connect(self.insert)
         self.completed.clicked.connect(self.mark_completed)
         self.restart.clicked.connect(self.reset_all)
+        self.edit.clicked.connect(self.edit_content)
         self.delete_2.clicked.connect(exit)
 
         # LCD
@@ -44,7 +45,8 @@ class MyGUI(QMainWindow):
         # Enable Completed and Reset
         if self.tasks != 0:
             self.completed.setEnabled(True)
-            self.restart.setEnabled(True)            
+            self.restart.setEnabled(True)     
+            self.edit.setEnabled(True)         
 
         # Clear the text field
         self.input_field.setText("")
@@ -82,11 +84,23 @@ class MyGUI(QMainWindow):
             caution_box.setText("No Task Selected")
             caution_box.exec_()
 
+    # Reset function
     def reset_all(self):
         self.model.clear()
         self.completed_count, self.tasks = 0 , 0
         self.lcd_update()
         
+    # Edit function
+    def edit_content(self):
+        if len(self.listView.selectedIndexes()) != 0:
+
+            selected_index = self.listView.selectedIndexes()[0]
+            sel_item = self.model.itemFromIndex(selected_index)
+
+            text, ok = QInputDialog.getText(self, "Edit", "Edit Task", QLineEdit.Normal, sel_item.text())
+            if text and ok is not None:
+                sel_item.setText(text)
+
 
     # Update LCD function
     def lcd_update(self):
