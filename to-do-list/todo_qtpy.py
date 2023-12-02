@@ -89,9 +89,17 @@ class MyGUI(QMainWindow):
 
     # Reset function
     def reset_all(self):
-        self.model.clear()
-        self.completed_count, self.tasks = 0 , 0
-        self.lcd_update()
+        
+        reset_box = QMessageBox()
+        reset_box.setWindowTitle("New")
+        reset_box.setText(f"{self.tasks} Remaining !! Do you wanna still Continue")
+        reset_box.addButton(QPushButton("YES"), QMessageBox.YesRole)
+        reset_box.addButton(QPushButton("NO"), QMessageBox.NoRole)
+
+        if reset_box.exec_() == 0:
+            self.model.clear()
+            self.completed_count, self.tasks = 0 , 0
+            self.lcd_update()
         
     # Edit function
     def edit_content(self):
