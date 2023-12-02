@@ -1,4 +1,5 @@
 from PyQt5.QtWidgets import *
+from PyQt5.QtGui import QStandardItem, QStandardItemModel
 from PyQt5 import uic
 
 class MyGUI(QMainWindow):
@@ -13,9 +14,23 @@ class MyGUI(QMainWindow):
         self.completed.clicked.connect(self.mark_completed)
         self.restart.clicked.connect(self.reset_all)
         self.delete_2.clicked.connect(exit)
+
+        # Text view-list Model
+        # object for model
+        self.model = QStandardItemModel()
+        # Set text_view to model 
+        self.listView.setModel(self.model)
+
     
     def insert(self):
-        pass
+        
+        # add the task
+        text = QStandardItem(self.input_field.text())
+        self.model.appendRow(text)
+
+        # Clear the text field
+        self.input_field.setText("")
+
     def mark_completed(self):
         pass
     def reset_all(self):
