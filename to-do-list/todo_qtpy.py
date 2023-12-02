@@ -4,6 +4,9 @@ from PyQt5 import uic
 
 class MyGUI(QMainWindow):
 
+    # variables 
+    tasks = 0
+
     def __init__(self):
         super(MyGUI, self).__init__()
         uic.loadUi('todo.ui', self)
@@ -27,6 +30,12 @@ class MyGUI(QMainWindow):
         # add the task
         text = QStandardItem(self.input_field.text())
         self.model.appendRow(text)
+        self.tasks += 1
+
+        # Enable Completed and Reset
+        if self.tasks != 0:
+            self.completed.setEnabled(True)
+            self.restart.setEnabled(True)
 
         # Clear the text field
         self.input_field.setText("")
