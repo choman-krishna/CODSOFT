@@ -27,7 +27,8 @@ class MyGUI(QMainWindow):
 
         # LCD
         # object for lcd
-        self.lcd = self.findChild(QLCDNumber, "task_count_display_2")
+        self.lcd_tasks = self.findChild(QLCDNumber, "task_count_display_2")
+        self.lcd_uncompleted = self.findChild(QLCDNumber, "un_count_display")
         
 
         
@@ -39,13 +40,12 @@ class MyGUI(QMainWindow):
         text = QStandardItem(self.input_field.text())
         self.model.appendRow(text)
         self.tasks += 1
-        self.lcd.display(self.tasks)
+        self.lcd_tasks.display(self.tasks)
+
         # Enable Completed and Reset
         if self.tasks != 0:
             self.completed.setEnabled(True)
-            self.restart.setEnabled(True)
-
-            
+            self.restart.setEnabled(True)            
 
         # Clear the text field
         self.input_field.setText("")
@@ -65,6 +65,13 @@ class MyGUI(QMainWindow):
             
             if sel_item.font().strikeOut():
                 self.completed_count += 1
+                self.tasks -= 1
+            else:
+                self.completed_count -= 1
+                self.tasks += 1
+
+            self.lcd_uncompleted.display(self.completed_count)
+
 
         else:
             caution_box = QMessageBox()
