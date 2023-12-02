@@ -1,0 +1,7 @@
+# requirements.txt
+
+# PyQt5 and related modules (Note: PyQt5 itself might not be listed here)
+PyQt5==5.15.6
+PyQtWebEngine==5.15.6
+pyqt5-tools==5.15.6
+# Other dependencies
