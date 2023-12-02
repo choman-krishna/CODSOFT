@@ -1,5 +1,5 @@
 from PyQt5.QtWidgets import *
-from PyQt5.QtGui import QStandardItem, QStandardItemModel, QTextCharFormat
+from PyQt5.QtGui import QStandardItem, QStandardItemModel, QTextCharFormat, QIcon
 from PyQt5 import uic
 
 class MyGUI(QMainWindow):
@@ -12,7 +12,10 @@ class MyGUI(QMainWindow):
         super(MyGUI, self).__init__()
         uic.loadUi('todo.ui', self)
         self.show()
-
+        
+        self.setWindowTitle("Task Manager v1.0")
+        self.setWindowIcon(QIcon("Images\logo.png"))
+        self.setFixedSize(470, 594)
         # Text view-list Model
         # object for model
         self.model = QStandardItemModel()
