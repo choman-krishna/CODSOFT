@@ -1,4 +1,4 @@
-# To-Do List - Task 1  - CODSOFT  
+# To-Do List 
 
 # Task Manager v1.0
 
